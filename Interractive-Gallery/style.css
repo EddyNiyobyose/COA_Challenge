@@ -1,0 +1,141 @@
+/* style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    background-color: #000; /* Dark black background for the body */
+}
+
+.gallery {
+    display: flex;
+    flex-direction: row; /* Ensure items are in a row */
+    gap: 5px; /* Reduce the gap between the images */
+    justify-content: center;
+    padding: 20px;
+    background-color: #000; /* Dark black background for the gallery */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.gallery-item {
+    position: relative;
+    width: calc((100vw - 30px) / 4); /* Adjust width to fit 4 images in viewport width */
+    height: auto;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.gallery-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+    transition: background-color 0.3s ease;
+    z-index: 1; /* Ensure the overlay is on top of the image */
+}
+
+.gallery-item:hover::before {
+    background-color: rgba(0, 0, 0, 0.7); /* Darker overlay on hover */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+    z-index: 0; /* Ensure the image is below the overlay */
+}
+
+.gallery-item:hover img {
+    filter: blur(3px); /* Apply blur effect on hover */
+    opacity: 0.7; /* Darken the image */
+}
+
+.overlay {
+    position: absolute; /* Position the overlay container */
+    bottom: 0; /* Align the container to the bottom */
+    left: 0; /* Align the container to the left */
+    width: 100%; /* Set the width to 100% */
+    text-align: center; /* Align text to the left */
+    color: white; /* Set text color to white */
+    padding: 10px; /* Add padding */
+    transition: transform 0.3s ease; /* Add transition for smooth movement */
+    z-index: 2; /* Ensure the text overlay is on top of the pseudo-element */
+}
+
+.description {
+    font-family: "DIN Condensed", sans-serif; /* Apply DIN Condensed font */
+    font-size: 15px; /* Set font size */
+    font-weight: 200; /* Set font weight */
+    line-height: 18px; /* Set line height for the description */
+    margin: 0; /* Reset margin */
+    color: white; /* Set text color to white */
+}
+
+.description br {
+    display: block; /* Change display to block */
+    text-align: left;
+    content: ""; /* Clear content */
+    margin-bottom: 15px; /* Add margin between lines */
+}
+
+.country {
+    font-family: "Poppins", sans-serif; /* Apply Poppins font */
+    font-size: 14px; /* Set font size for country */
+    font-weight: 400; /* Set font weight for country */
+    line-height: 14px; /* Set line height for country */
+    margin-top: 5px; /* Adjust margin between description and country */
+}
+
+.link {
+    display: none; /* Initially hide the link */
+    margin-top: 5px; /* Add margin above the link */
+}
+
+.gallery-item:hover .overlay {
+    transform: translateY(-10px); /* Move description and country up on hover */
+}
+
+.gallery-item:hover .link {
+    display: block; /* Show link on hover */
+}
+
+.know-more {
+    color: rgb(23, 157, 197); /* Set link color to green */
+    text-decoration: none; /* Remove underline from link */
+    font-family: "Poppins", sans-serif; /* Apply Poppins font */
+    font-size: 14px; /* Set font size for link */
+    font-weight: 400; /* Set font weight for link */
+    line-height: 14px; /* Set line height for link */
+}
+
+.fresh {
+    font-family: "Poppins", sans-serif; /* Apply Poppins font */
+    font-size: 14px; /* Set font size for Fresh text */
+    font-weight: 400; /* Set font weight for Fresh text */
+    line-height: 14px; /* Set line height for Fresh text */
+    color: rgb(19, 132, 160); /* Set text color to white */
+    margin-left: 5px; /* Add some space between the link and Fresh text */
+}
+
+.lightbox {
+    display: none; /* Initially hidden */
+    position: fixed; /* Fixed positioning to cover the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
+    z-index: 1000; /* Ensures the lightbox is above other elements */
+}
+
+.lightbox img {
+    max-width: 80%; /* Ensures the image is not too large */
+    max-height: 80%; /* Ensures the image is not too large */
+}
